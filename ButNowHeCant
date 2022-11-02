@@ -1,0 +1,429 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("eod 1.0", "DarkTheme")
+
+
+local Tab = Window:NewTab("anti locks")
+local Section = Tab:NewSection("eod")
+
+
+Section:NewToggle("underground aa", "make skiddies lock under your character", function(state)
+    if state then
+        getgenv().bot = true 
+        getgenv().emt = -100
+        
+        game:GetService("RunService").heartbeat:Connect(function()
+        if getgenv().bot ~= false then
+        local antiurmum = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, getgenv().emt, 0)
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = antiurmum
+        end
+        end)
+    else
+        getgenv().bot = false 
+getgenv().emt = -100
+
+game:GetService("RunService").heartbeat:Connect(function()
+if getgenv().bot ~= false then
+local antiurmum = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, getgenv().emt, 0)
+    game:GetService("RunService").RenderStepped:Wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = antiurmum
+end
+end)
+    end
+end)
+
+
+
+
+Section:NewToggle("Sky aa", "make skiddies shoot at the sky", function(state)
+    if state then
+        getgenv().Sky = true 
+        getgenv().SkyAmount = 90
+        
+        game:GetService("RunService").heartbeat:Connect(function()
+            if getgenv().Sky ~= false then 
+            local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,      getgenv().SkyAmount,0) 
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+            end 
+        end)
+    else
+        getgenv().Sky = false 
+getgenv().SkyAmount = 90
+
+game:GetService("RunService").heartbeat:Connect(function()
+    if getgenv().Sky ~= false then 
+    local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,      getgenv().SkyAmount,0) 
+    game:GetService("RunService").RenderStepped:Wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+    end 
+end)
+    end
+end)
+
+
+Section:NewToggle("blatnant aa", "be blatnant infront of skids", function(state)
+    if state then
+        getgenv().BlatantAA = true
+
+        local Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        while getgenv().BlatantAA == true  do
+            task.wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (CFrame.new(Position) + Vector3.new(math.random(-15, 15), math.random(-15, 15), math.random(-15, 15))) * CFrame.Angles(math.rad(math.random(-180, 180)), math.rad(math.random(-180, 180)), math.rad(math.random(-180, 180)))
+        end
+    else
+        getgenv().BlatantAA = false
+
+        local Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        while getgenv().BlatantAA == true  do
+            task.wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (CFrame.new(Position) + Vector3.new(math.random(-15, 15), math.random(-15, 15), math.random(-15, 15))) * CFrame.Angles(math.rad(math.random(-180, 180)), math.rad(math.random(-180, 180)), math.rad(math.random(-180, 180)))
+        end
+    end
+end)
+
+
+
+
+
+Section:NewToggle("Cframe aa", "Z to use", function(state)
+    if state then
+        local AA = {
+            Enabled = true,
+            NoPrediction = true
+        }
+        
+        --// Settings
+        getgenv().Keybind = Enum.KeyCode.Z
+        getgenv().Speed = -0.200
+        
+        --// Vars
+        local ax = true
+        local enabled = false 
+        local RunServce = game:GetService("RunService")
+        
+        --// Main shit
+        game:service('UserInputService').InputBegan:connect(function(Keybind, C)
+            if C then return end
+            if Keybind.KeyCode == getgenv().Keybind then
+            if AA.NoPrediction == true and AA.Enabled == true then
+                enabled = not enabled
+            end
+            end
+        end)
+        RunServce.Heartbeat:Connect(function()
+        if enabled and ax then
+        local v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(v)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.Humanoid.MoveDirection * -getgenv().Speed 
+        end
+        end)
+        
+        --local Pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        
+    else
+        local AA = {
+            Enabled = false,
+            NoPrediction = false
+        }
+        
+        --// Settings
+        getgenv().Keybind = Enum.KeyCode.Z
+        getgenv().Speed = -0.165
+        
+        --// Vars
+        local ax = true
+        local enabled = false 
+        local RunServce = game:GetService("RunService")
+        
+        --// Main shit
+        game:service('UserInputService').InputBegan:connect(function(Keybind, C)
+            if C then return end
+            if Keybind.KeyCode == getgenv().Keybind then
+            if AA.NoPrediction == true and AA.Enabled == true then
+                enabled = not enabled
+            end
+            end
+        end)
+        RunServce.Heartbeat:Connect(function()
+        if enabled and ax then
+        local v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(v)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.Humanoid.MoveDirection * -getgenv().Speed 
+        end
+        end)
+        
+        --local Pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        
+    end
+end)
+
+
+
+
+
+Section:NewToggle("Overworld", "Same as sky aa but ever more higher ", function(state)
+    if state then
+        getgenv().Sky = true 
+        getgenv().SkyAmount = 290
+        
+        game:GetService("RunService").heartbeat:Connect(function()
+            if getgenv().Sky ~= false then 
+            local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,      getgenv().SkyAmount,0) 
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+            end 
+        end)
+    else
+        getgenv().Sky = false 
+        getgenv().SkyAmount = 90
+        
+        game:GetService("RunService").heartbeat:Connect(function()
+            if getgenv().Sky ~= false then 
+            local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,      getgenv().SkyAmount,0) 
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+            end 
+        end)
+    end
+end)
+
+
+
+
+Section:NewToggle("Under world aa", "Same as underground but more under", function(state)
+    if state then
+        getgenv().bot = true 
+getgenv().emt = -200
+
+game:GetService("RunService").heartbeat:Connect(function()
+if getgenv().bot ~= false then
+local antiurmum = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, getgenv().emt, 0)
+    game:GetService("RunService").RenderStepped:Wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = antiurmum
+end
+end)
+    else
+        getgenv().bot = false 
+        getgenv().emt = -100
+        
+        game:GetService("RunService").heartbeat:Connect(function()
+        if getgenv().bot ~= false then
+        local antiurmum = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, getgenv().emt, 0)
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = antiurmum
+        end
+        end)
+    end
+end)
+
+
+local Tab = Window:NewTab("Lock Detector")
+local Section = Tab:NewSection("Dm eod#0001 for the script, Its paid lol")
+
+local sTab = Window:NewTab("Some stuff")
+local Section = sTab:NewSection("random stuff here")
+
+Section:NewButton("Resolver", "resolve skiddies", function()
+    local RunService = game:GetService("RunService")
+
+RunService.Heartbeat:Connect(function()
+    pcall(function()
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                local hrp = v.Character.HumanoidRootPart
+                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+            end
+        end
+    end)
+end)
+end)
+
+Section:NewButton("Desync", "X to use", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/reallykaren/desync/main/pro", true))()
+    print("eod's Desync loaded! X to use")
+end)
+
+local Tab = Window:NewTab("ESP")
+local Section = Tab:NewSection("track some kids here")
+
+
+Section:NewToggle("esp", "track some skids", function(state)
+    if state then
+        local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function esp(p,cr)
+    local h = cr:WaitForChild("Humanoid")
+    local hrp = cr:WaitForChild("HumanoidRootPart")
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Center = true
+    text.Outline = true 
+    text.Font = 2
+    text.Color = Color3.fromRGB(255,255,255)
+    text.Size = 13
+
+    local c1
+    local c2
+    local c3
+
+    local function dc()
+        text.Visible = false
+        text:Remove()
+        if c1 then
+            c1:Disconnect()
+            c1 = nil 
+        end
+        if c2 then
+            c2:Disconnect()
+            c2 = nil 
+        end
+        if c3 then
+            c3:Disconnect()
+            c3 = nil 
+        end
+    end
+
+    c2 = cr.AncestryChanged:Connect(function(_,parent)
+        if not parent then
+            dc()
+        end
+    end)
+
+    c3 = h.HealthChanged:Connect(function(v)
+        if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+            dc()
+        end
+    end)
+
+    c1 = rs.RenderStepped:Connect(function()
+        local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
+        if hrp_onscreen then
+            text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
+            text.Text = p.Name
+            text.Visible = true
+        else
+            text.Visible = false
+        end
+    end)
+end
+
+local function p_added(p)
+    if p.Character then
+        esp(p,p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p,cr)
+    end)
+end
+
+for i,p in next, ps:GetPlayers() do 
+    if p ~= lp then
+        p_added(p)
+    end
+end
+
+ps.PlayerAdded:Connect(p_added)
+    else
+        print("Toggle Off")
+        local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function esp(p,cr)
+    local h = cr:WaitForChild("Humanoid")
+    local hrp = cr:WaitForChild("HumanoidRootPart")
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Center = false
+    text.Outline = false 
+    text.Font = 2
+    text.Color = Color3.fromRGB(255,255,255)
+    text.Size = 13
+
+    local c1
+    local c2
+    local c3
+
+    local function dc()
+        text.Visible = false
+        text:Remove()
+        if c1 then
+            c1:Disconnect()
+            c1 = nil 
+        end
+        if c2 then
+            c2:Disconnect()
+            c2 = nil 
+        end
+        if c3 then
+            c3:Disconnect()
+            c3 = nil 
+        end
+    end
+
+    c2 = cr.AncestryChanged:Connect(function(_,parent)
+        if not parent then
+            dc()
+        end
+    end)
+
+    c3 = h.HealthChanged:Connect(function(v)
+        if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+            dc()
+        end
+    end)
+
+    c1 = rs.RenderStepped:Connect(function()
+        local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
+        if hrp_onscreen then
+            text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
+            text.Text = p.Name
+            text.Visible = false
+        else
+            text.Visible = false
+        end
+    end)
+end
+
+local function p_added(p)
+    if p.Character then
+        esp(p,p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p,cr)
+    end)
+end
+
+for i,p in next, ps:GetPlayers() do 
+    if p ~= lp then
+        p_added(p)
+    end
+end
+
+ps.PlayerAdded:Connect(p_added)
+    end
+end)
+
+local Tab = Window:NewTab("Settings")
+
+local Section = Tab:NewSection("Settings")
+
+Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
